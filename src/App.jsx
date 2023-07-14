@@ -6,7 +6,7 @@ import { Home } from './components/Home/Home';
 import { Header } from './components/Header/Header';
 
 function App() {
-  const token = true;
+  const token = false;
   if (!token) {
     return (
       <>
