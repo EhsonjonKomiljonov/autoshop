@@ -1,30 +1,35 @@
-import { Register } from './components/Register/Register';
-import { Login } from './components/Login/Login';
+import { Register } from './pages/Register/Register';
+import { Login } from './pages/Login/Login';
 import './assets/css/index.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Home } from './components/Home/Home';
+import { Home } from './pages/Home/Home';
 import { Header } from './components/Header/Header';
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
-  const token = false;
+  const token = true;
   if (!token) {
     return (
-      <>
+      <QueryClientProvider client={queryClient}>
         <Routes>
           <Route index element={<Navigate to="/signup" />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </>
+      </QueryClientProvider>
     );
   }
 
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
     </>
   );
 }

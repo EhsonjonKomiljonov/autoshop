@@ -1,0 +1,10 @@
+.nav__list {
+  a {
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid #fff !important;
+    }
+  }
+}

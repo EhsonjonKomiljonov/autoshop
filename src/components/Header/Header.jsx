@@ -1,21 +1,69 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/logo.svg';
+import './header.scss';
 
 export const Header = () => {
+  const [scroll, setScroll] = useState(false);
+  let lastScrollY = 0;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.pageYOffset;
+
+      if (scrollY > lastScrollY) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+
+      lastScrollY = scrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header class="py-3">
-      <div class="container">
-        <div class="d-flex align-items-center justify-content-between">
+    <header
+      style={{
+        transform: scroll ? 'translateY(-100%)' : 'translateY(0)',
+        transition: 'all .3s ease',
+        boxShadow: '5px 10px 10px 10px #0000005f'
+      }}
+      className="py-4 position-fixed top-0 w-100 bg-dark"
+    >
+      <div className="container">
+        <div className="d-flex align-items-center justify-content-between">
           <Link to="/">
             <img src={Logo} alt="AUTO SHOP" width="150" />
           </Link>
-          <nav>
-            <ul class="list-unstyled m-0">
+          <nav className="nav">
+            <ul className="nav__list d-flex align-items-center gap-5 list-unstyled m-0">
               <li>
-                <Link to="/" class="text-dark text-decoration-none fw-semibold">
-                  Vakansiya joylash
-                </Link>
+                <NavLink
+                  to="/"
+                  className="text-white text-decoration-none fw-semibold"
+                  style={({ isActive }) =>
+                    isActive ? { borderBottom: '2px solid #ba1621' } : {}
+                  }
+                >
+                  ABOUT
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/vacancy"
+                  className="text-white text-decoration-none fw-semibold"
+                  style={({ isActive }) =>
+                    isActive ? { borderBottom: '2px solid #ba1621' } : {}
+                  }
+                >
+                  VAKANSIYA JOYLASH
+                </NavLink>
               </li>
             </ul>
           </nav>
