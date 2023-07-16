@@ -1,0 +1,102 @@
+.about {
+  padding: 0 0 120px;
+  background-image: url('../../assets/images/cars.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% auto;
+  box-shadow: inset 0px -70px 51px 0px #262a33, inset 0px 70px 51px 0px #262a33;
+
+  h2 {
+    background: linear-gradient(
+      to right,
+      #9c2020 20%,
+      #dadee0 30%,
+      #9e9fa0 70%,
+      #9c2020 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 8s ease-in-out infinite alternate;
+  }
+}
+
+.about_list {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 60px;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 350px;
+    min-height: 420px;
+    padding: 30px 40px;
+    border-radius: 10px;
+    background-color: #1a1835;
+    transition: all 0.3s ease-in-out;
+
+    i {
+      transform: translateX(10px);
+      transition: all 0.2s ease;
+    }
+
+    a {
+      transition: all 0.4s ease;
+    }
+
+    a:hover {
+      color: #9e9fa0 !important;
+      transition: all 0.4s ease;
+      i {
+        transition: all 0.2s ease;
+        transform: translateX(20px);
+      }
+    }
+
+    &::before {
+      display: block;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+    }
+
+    &:hover {
+      transform: translateY(-20px);
+      background-color: #1a1835a9;
+      box-shadow: #00000040 0px 54px 55px,
+        #0000001f 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        #0000002b 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+  }
+
+  li:nth-child(1)::before {
+    background-image: url('../../assets/images/moto.png');
+  }
+
+  li:nth-child(2)::before {
+    background-image: url('../../assets/images/car.png');
+  }
+
+  li:nth-child(3)::before {
+    background-image: url('../../assets/images/truck.png');
+  }
+}
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

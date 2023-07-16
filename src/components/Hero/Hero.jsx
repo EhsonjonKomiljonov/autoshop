@@ -7,7 +7,7 @@ export const Hero = () => {
     <section className="hero">
       <div className="container">
         <div className="hero__content">
-          <h1>AutoShop - Sizning eng ishonchi platformangiz!</h1>
+          <h1>AutoShop - Sizning eng ishonchli platformangiz!</h1>
           <p>
             AutoShop platformasi 2015-yildan buyon o'z ish faoliyatini davom
             ettirmoqda. <br /> Bizning asosiy maqsadimiz, mijozlarimizga eng

@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { Header } from './components/Header/Header';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { Footer } from './components/Footer/Footer';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

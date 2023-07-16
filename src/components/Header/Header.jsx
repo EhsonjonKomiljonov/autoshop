@@ -11,7 +11,7 @@ export const Header = () => {
     const handleScroll = () => {
       const scrollY = window.pageYOffset;
 
-      if (scrollY > lastScrollY) {
+      if (scrollY > lastScrollY && scrollY > 60) {
         setScroll(true);
       } else {
         setScroll(false);
@@ -30,11 +30,11 @@ export const Header = () => {
   return (
     <header
       style={{
-        transform: scroll ? 'translateY(-100%)' : 'translateY(0)',
+        transform: scroll ? 'translateY(-110%)' : 'translateY(0)',
         transition: 'all .3s ease',
         boxShadow: '5px 10px 10px 10px #0000005f'
       }}
-      className="py-4 position-fixed top-0 w-100 bg-dark"
+      className="py-4 position-fixed z-3 top-0 w-100 bg-dark"
     >
       <div className="container">
         <div className="d-flex align-items-center justify-content-between">
