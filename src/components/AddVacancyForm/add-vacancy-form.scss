@@ -1,0 +1,72 @@
+.vacancy__inner {
+  height: 100%;
+  min-height: 100vh;
+
+  .file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .file-upload {
+    display: flex;
+    align-items: flex-end;
+    width: 300px;
+    height: 450px;
+    background-color: #333;
+    border: 2px dashed #7f7d7daa;
+    border-radius: 12px;
+    cursor: pointer;
+    background-image: url('../../assets/images/plus.png');
+    background-position: center top 150px;
+    background-repeat: no-repeat;
+
+    div {
+      margin-bottom: 80px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      text-align: center;
+      opacity: 0.7;
+    }
+  }
+}
+
+.vacancy-right {
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 40px 60px;
+
+  label {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  label + label {
+    margin-top: 20px;
+  }
+
+  textarea {
+    height: 100%;
+    min-height: 150px;
+  }
+
+  input, textarea {
+    width: 100%;
+    max-width: 400px;
+    resize: none;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #626262;
+    border-radius: 10px;
+    outline: none;
+    color: #c5c2c2;
+
+    &:focus {
+      outline: 2px solid #848484;
+    }
+  }
+}

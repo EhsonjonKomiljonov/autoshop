@@ -10,13 +10,16 @@ html {
 }
 
 body {
-  display: flex !important;
-  flex-direction: column !important;
-  font-family: 'Ysabeau SC', sans-serif !important;
-  height: 100% !important;
   margin: 0;
   padding-top: 80px;
+  font-family: 'Ysabeau SC', sans-serif !important;
   background-color: #262a33 !important;
+}
+
+#root {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
 }
 
 main {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 export const Login = () => {
+  document.body.classList.remove("p-0")
   const initialValues = {
     first_name: '',
     last_name: '',

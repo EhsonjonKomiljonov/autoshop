@@ -7,6 +7,7 @@ import axios from 'axios';
 import { API } from '../../API/api';
 
 export const Register = () => {
+  document.body.classList.remove("p-0")
   const initialValues = {
     first_name: '',
     last_name: '',
