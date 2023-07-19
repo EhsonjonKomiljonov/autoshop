@@ -10,9 +10,9 @@ import { RegisterContext } from '../../context/RegisterContext';
 export const Register = () => {
   const { setToken } = useContext(RegisterContext);
   const navigate = useNavigate();
-  
+
   document.body.classList.add('p-0');
-  
+
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -52,11 +52,8 @@ export const Register = () => {
         navigate('/');
       }
     },
+    onError: (err) => console.log(err),
   });
-
-  // if(isLoading) {
-  //   return <h1>Loading...</h1>
-  // }
 
   const onSubmit = (values) => {
     const formData = new FormData();
