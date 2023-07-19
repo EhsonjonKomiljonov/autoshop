@@ -8,10 +8,11 @@ import { useContext } from 'react';
 import { RegisterContext } from '../../context/RegisterContext';
 
 export const Register = () => {
-  document.body.classList.remove('p-0');
   const { setToken } = useContext(RegisterContext);
   const navigate = useNavigate();
-
+  
+  document.body.classList.add('p-0');
+  
   const initialValues = {
     firstName: '',
     lastName: '',
