@@ -1,15 +1,17 @@
 import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
-import './assets/css/index.css';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { AddVacancy } from './pages/AddVacancy/AddVacancy';
+import { useContext } from 'react';
+import { RegisterContext } from './context/RegisterContext';
+import './assets/css/index.css';
 
 const queryClient = new QueryClient();
 
 function App() {
-  const token = true;
+  const { token } = useContext(RegisterContext);
 
   if (!token) {
     return (
@@ -25,12 +27,14 @@ function App() {
 
   return (
     <>
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/vacancy" element={<AddVacancy />} />
-        </Routes>
-      </main>
+      <QueryClientProvider client={queryClient}>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/vacancy" element={<AddVacancy />} />
+          </Routes>
+        </main>
+      </QueryClientProvider>
     </>
   );
 }

@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import './add-vacancy-form.scss';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { API } from '../../API/api';
 
 export const AddVacancyForm = () => {
   const [fileName, setFileName] = useState('');
@@ -22,7 +24,18 @@ export const AddVacancyForm = () => {
     probeg: '',
   };
 
-  const onSubmit = (val) => {};
+  const { mutate } = useMutation('add-vacancy', API.addVacancy, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (err) => {
+      console.log(err)
+    }
+  });
+
+  const onSubmit = (val) => {
+    mutate(val);
+  };
 
   const validationSchema = Yup.object({
     category: Yup.string()
@@ -49,7 +62,7 @@ export const AddVacancyForm = () => {
       .required('Mashina narxini kiritish majburiy!')
       .min(100, "Mashina narxi eng kami 100$ ko'p bo'lishi mumkin!")
       .max(5000000, "Mashina narxi eng ko'pi 5.000.000$ kam bo'lishi mumkin!"),
-    description: Yup.number().required(
+    description: Yup.string().required(
       'Mashina xaqida izoh qoldirish majburiy!'
     ),
     probeg: Yup.number()
@@ -99,9 +112,43 @@ export const AddVacancyForm = () => {
             <Form className="d-flex flex-column">
               <label className="w-100">
                 <Field
+                  placeholder="Mashina markasini tanlang."
                   name="category"
-                  placeholder="Markani kiriting. misol: (chevrolet)"
+                  list="car_category"
                 />
+                <datalist name="category" id="car_category">
+                  <option>CHEVROLET</option>
+                  <option>DAEWOO</option>
+                  <option>LEXUS</option>
+                  <option>TOYOTA</option>
+                  <option>BMW</option>
+                  <option>NISSAN</option>
+                  <option>AUDI</option>
+                  <option>HONDA</option>
+                  <option>FORD</option>
+                  <option>MERCEDES-BENZ</option>
+                  <option>KIA</option>
+                  <option>HYUNDAI</option>
+                  <option>LADA</option>
+                  <option>MAZDA</option>
+                  <option>MITSUBISHI</option>
+                  <option>RENAULT</option>
+                  <option>SKODA</option>
+                  <option>VOLKSWEGEN</option>
+                  <option>SUBARU</option>
+                  <option>TESLA</option>
+                  <option>JEEP</option>
+                  <option>CADILLAC</option>
+                  <option>DODGE</option>
+                  <option>ГАЗ</option>
+                  <option>PORSCHE</option>
+                  <option>OPEL</option>
+                  <option>GENESiS</option>
+                  <option>DS</option>
+                  <option>Ferrari</option>
+                  <option>ALFA ROMEO</option>
+                  <option>ASTON MARTIN</option>
+                </datalist>
                 <span className="text-danger mt-2">
                   <ErrorMessage name="category" />
                 </span>
@@ -178,7 +225,7 @@ export const AddVacancyForm = () => {
                 </span>
               </label>
               <button
-                class="glow-on-hover mx-auto mt-4"
+                className="glow-on-hover mx-auto mt-4"
                 style={{ width: '400px' }}
                 type="button"
               >

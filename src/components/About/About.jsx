@@ -24,7 +24,7 @@ export const About = () => {
                 to="/main-vacancys"
               >
                 VAKANSIYALAR
-                <i class="fa-solid fa-arrow-right"></i>
+                <i className="fa-solid fa-arrow-right"></i>
               </Link>
             </li>
             <li>
@@ -38,7 +38,7 @@ export const About = () => {
                 to="/main-vacancys"
               >
                 VAKANSIYALAR
-                <i class="fa-solid fa-arrow-right"></i>
+                <i className="fa-solid fa-arrow-right"></i>
               </Link>
             </li>
             <li>
@@ -52,7 +52,7 @@ export const About = () => {
                 to="/main-vacancys"
               >
                 VAKANSIYALAR
-                <i class="fa-solid fa-arrow-right"></i>
+                <i className="fa-solid fa-arrow-right"></i>
               </Link>
             </li>
           </ul>

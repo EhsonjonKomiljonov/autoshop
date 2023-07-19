@@ -54,7 +54,9 @@
     min-height: 150px;
   }
 
-  input, textarea {
+  input,
+  textarea,
+  select {
     width: 100%;
     max-width: 400px;
     resize: none;

@@ -15,7 +15,7 @@ export const Hero = () => {
             ishonchli xizmatni ko'rsatishdir.
           </p>
           <Link to="/vacancy">
-            <button class="glow-on-hover" type="button">
+            <button className="glow-on-hover" type="button">
               VAKANSIYA JOYLASH
             </button>
           </Link>
