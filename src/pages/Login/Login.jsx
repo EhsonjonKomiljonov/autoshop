@@ -43,11 +43,11 @@ export const Login = () => {
         background: '#111',
       }}
     >
-      <div class="square">
+      <div className="square">
         <i style={{ '--clr': '#00ff0a' }}></i>
         <i style={{ '--clr': '#ff0057' }}></i>
         <i style={{ '--clr': '#fffd44' }}></i>
-        <div class="login">
+        <div className="login">
           <h2>Login</h2>
           <Formik
             initialValues={initialValues}
@@ -55,24 +55,24 @@ export const Login = () => {
             onSubmit={onSubmit}
           >
             <Form>
-              <div class="inputBx" id="email_box">
+              <div className="inputBx" id="email_box">
                 <Field name="email" type="text" placeholder="Email" />
                 <span className="text-danger ms-2 fw-semibold">
                   <ErrorMessage name="email" />
                 </span>
               </div>
-              <div class="inputBx" id="password_box">
+              <div className="inputBx" id="password_box">
                 <Field name="password" type="password" placeholder="Password" />
                 <span className="text-danger ms-2 fw-semibold">
                   <ErrorMessage name="password" />
                 </span>
               </div>
-              <div class="inputBx">
+              <div className="inputBx">
                 <input type="submit" value="Sign Up" />
               </div>
             </Form>
           </Formik>
-          <div class="links">
+          <div className="links">
             <Link to="/signup">Signup</Link>
           </div>
         </div>
