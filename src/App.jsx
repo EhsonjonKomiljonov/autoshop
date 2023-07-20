@@ -7,6 +7,7 @@ import { AddVacancy } from './pages/AddVacancy/AddVacancy';
 import { useContext } from 'react';
 import { RegisterContext } from './context/RegisterContext';
 import './assets/css/index.css';
+import MainVacancys from './components/MainVacancys/MainVacancys';
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,18 @@ function App() {
     return (
       <QueryClientProvider client={queryClient}>
         <Routes>
-          <Route index element={<Navigate to="/signup" />} />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            index
+            element={<Navigate to='/signup' />}
+          />
+          <Route
+            path='/signup'
+            element={<Register />}
+          />
+          <Route
+            path='/login'
+            element={<Login />}
+          />
         </Routes>
       </QueryClientProvider>
     );
@@ -30,8 +40,18 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/vacancy" element={<AddVacancy />} />
+            <Route
+              path='/'
+              element={<Home />}
+            />
+            <Route
+              path='/vacancy'
+              element={<AddVacancy />}
+            />
+            <Route
+              path='main-vacancys'
+              element={<MainVacancys />}
+            />
           </Routes>
         </main>
       </QueryClientProvider>
