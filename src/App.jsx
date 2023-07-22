@@ -8,7 +8,6 @@ import { useContext } from 'react';
 import { RegisterContext } from './context/RegisterContext';
 import './assets/css/index.css';
 import MainVacancys from './components/MainVacancys/MainVacancys';
-
 const queryClient = new QueryClient();
 
 function App() {
