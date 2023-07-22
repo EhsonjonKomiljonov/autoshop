@@ -74,7 +74,7 @@ export const Login = () => {
         <i style={{ '--clr': '#ff0057' }}></i>
         <i style={{ '--clr': '#fffd44' }}></i>
         <div className="login">
-          <h2>LOGIN</h2>
+          <h2>Login</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -94,12 +94,12 @@ export const Login = () => {
                 </span>
               </div>
               <div className="inputBx">
-                <input type="submit" value="Sign In" />
+                <input type="submit" value="Sign Up" />
               </div>
             </Form>
           </Formik>
           <div className="links">
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/signup">Signup</Link>
           </div>
         </div>
       </div>
