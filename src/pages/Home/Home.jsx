@@ -12,11 +12,13 @@ export const Home = () => {
 
   const { setUserData } = useContext(UserContext);
 
-  const { data, isError } = useQuery('get-user', API.getUser);
+  if (!localStorage.getItem('user')) {
+    const { data, isError } = useQuery('get-user', API.getUser);
 
-  if (isError) console.log(isError);
+    if (isError) console.log(isError);
 
-  if (data) setUserData(data.data.at(-1));
+    if (data) setUserData(data.data.at(-1));
+  }
 
   return (
     <>

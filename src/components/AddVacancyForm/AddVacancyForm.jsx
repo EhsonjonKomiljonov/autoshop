@@ -2,52 +2,29 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useRef, useState } from 'react';
 import './add-vacancy-form.scss';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { API } from '../../API/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AddVacancyForm = () => {
   const [fileName, setFileName] = useState('');
   const fileUploadRef = useRef();
+  const navigate = useNavigate();
 
   document.body.classList.add('p-0');
 
   const initialValues = {
     category: '',
     name: '',
-    car_color: '',
+    color: '',
     type: '',
-    transmission: '',
-    made_at: '',
+    transmissionIsAutomatic: '',
+    madeAt: '',
     price: '',
     description: '',
     probeg: '',
-  };
-
-  const { mutate } = useMutation('add-vacancy', API.addVacancy, {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
-  });
-
-  const onSubmit = (val) => {
-    const formData = new FormData();
-
-    formData.append('category', val.category);
-    formData.append('name', val.name);
-    formData.append('imagePath', fileUploadRef.current.files[0]);
-    formData.append('color', val.car_color);
-    formData.append('type', val.type);
-    formData.append('transmissionIsAutomatic', val.transmission);
-    formData.append('madeAt', val.made_at);
-    formData.append('price', val.price);
-    formData.append('description', val.description);
-    formData.append('probeg', val.probeg);
-
-    mutate(formData);
   };
 
   const validationSchema = Yup.object({
@@ -57,19 +34,19 @@ export const AddVacancyForm = () => {
     name: Yup.string()
       .required('Mashina nomini kiritish majburiy!')
       .min(2, "Mashina nomi eng kami 3ta harf bo'lishi mumkin!"),
-    car_color: Yup.string()
+    color: Yup.string()
       .required('Mashina rangini kiritish majburiy!')
       .min(2, "Mashina rangi eng kami 3ta harf bo'lishi mumkin!"),
     type: Yup.string()
       .required('Mashina tipini kiritish majburiy!')
       .min(2, "Mashina tipi eng kami 3ta harf bo'lishi mumkin!"),
-    transmission: Yup.string()
+    transmissionIsAutomatic: Yup.string()
       .required('Mashinani uzatish qutisini kiritish majburiy!')
       .min(2, "Mashina uzatish qutisi eng kami 3ta harf bo'lishi mumkin!")
       .max(8, "Mashina uzatish qutisi eng ko'pi 8ta harf bo'lishi mumkin!"),
-    made_at: Yup.number()
+    madeAt: Yup.number()
       .required('Mashina yilini kiritish majburiy!')
-      .min(1980, "Mashina yili eng kami 1980 yildan katta bo'lishi mumkin!")
+      .min(1990, "Mashina yili eng kami 1990 yildan katta bo'lishi mumkin!")
       .max(2023, "Mashina yili eng ko'pi 2023 yildan kichik bo'lishi mumkin!"),
     price: Yup.number()
       .required('Mashina narxini kiritish majburiy!')
@@ -85,6 +62,43 @@ export const AddVacancyForm = () => {
         "Mashina yurgan masofasi eng kami 100km dan ko'p bo'lishi mumkin!"
       ),
   });
+
+  const { mutate } = useMutation('add-vacancy', API.addVacancy, {
+    onSuccess: (data) => {
+      if (data.data) {
+        toast.success('Vakansiya joylandi!');
+
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
+      }
+    },
+    onError: (err) => {
+      if (err.response.data.errors.ImagePath) {
+        toast.error('Mashina rasmini joylang!');
+      }
+    },
+  });
+
+  const onSubmit = (val) => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    const formData = new FormData();
+
+    formData.append('category', val.category);
+    formData.append('name', val.name);
+    formData.append('imagePath', fileUploadRef.current.files[0]);
+    formData.append('color', val.color);
+    formData.append('type', val.type);
+    formData.append('transmissionIsAutomatic', val.transmissionIsAutomatic);
+    formData.append('madeAt', val.madeAt);
+    formData.append('price', val.price);
+    formData.append('description', val.description);
+    formData.append('probeg', val.probeg);
+    formData.append('manzil', userData[0].region);
+    formData.append('userId', userData[0].id);
+
+    mutate(formData);
+  };
 
   return (
     <section className="vacancy">
@@ -177,11 +191,11 @@ export const AddVacancyForm = () => {
               </label>
               <label className="w-100">
                 <Field
-                  name="car_color"
+                  name="color"
                   placeholder="Rangini kiriting. misol: (qora)"
                 />
                 <span className="text-danger mt-2">
-                  <ErrorMessage name="car_color" />
+                  <ErrorMessage name="color" />
                 </span>
               </label>
               <label className="w-100">
@@ -195,24 +209,26 @@ export const AddVacancyForm = () => {
               </label>
               <label className="w-100">
                 <Field
-                  name="transmission"
+                  name="transmissionIsAutomatic"
                   placeholder="Uzatish qutisini kiriting. misol: (avtomat)"
                 />
                 <span className="text-danger mt-2">
-                  <ErrorMessage name="transmission" />
+                  <ErrorMessage name="transmissionIsAutomatic" />
                 </span>
               </label>
               <label className="w-100">
                 <Field
-                  name="made_at"
+                  type="number"
+                  name="madeAt"
                   placeholder="Mashinani ishlab chiqarilgan sanasini kiriting."
                 />
                 <span className="text-danger mt-2">
-                  <ErrorMessage name="made_at" />
+                  <ErrorMessage name="madeAt" />
                 </span>
               </label>
               <label className="w-100">
                 <Field
+                  type="number"
                   name="price"
                   placeholder="Mashinani sotmoqchi bo'lgan narxni kiriting."
                 />
@@ -222,6 +238,7 @@ export const AddVacancyForm = () => {
               </label>
               <label className="w-100">
                 <Field
+                  type="number"
                   name="probeg"
                   placeholder="Mashina yurgan masofani kiriting. (пробег)"
                 />
@@ -230,9 +247,11 @@ export const AddVacancyForm = () => {
                 </span>
               </label>
               <label>
-                <Field as="textarea" name="description" placeholder="Izoh...">
-                  SS
-                </Field>
+                <Field
+                  as="textarea"
+                  name="description"
+                  placeholder="Izoh..."
+                ></Field>
                 <span className="text-danger mt-2">
                   <ErrorMessage name="description" />
                 </span>
@@ -240,7 +259,7 @@ export const AddVacancyForm = () => {
               <button
                 className="glow-on-hover mx-auto mt-4"
                 style={{ width: '400px' }}
-                type="button"
+                type="submit"
               >
                 SEND
               </button>
@@ -248,6 +267,18 @@ export const AddVacancyForm = () => {
           </Formik>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </section>
   );
 };
