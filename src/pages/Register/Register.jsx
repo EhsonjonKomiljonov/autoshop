@@ -41,13 +41,30 @@ export const Register = () => {
       .email('Incorrect email!'),
     passwordHash: Yup.string()
       .required('This input a required!')
+      .matches(
+        /[0-9]/,
+        'A number must be used even if there is one in the password!'
+      )
+      .matches(
+        /[a-z]/,
+        'Even if there is one in the password, a lowercase letter must be written!'
+      )
+      .matches(
+        /[A-Z]/,
+        'Even if there is one in the password, a uppercase letter must be written!'
+      )
+      .matches(
+        /(?=.*[@#$%^&+=])/,
+        'A symbol must be written even if there is one in the password!'
+      )
       .min(8, 'Password must consist of at least 8 elements!'),
   });
 
   const { mutate } = useMutation('signup-users', API.signUp, {
     onSuccess: (data) => {
       if (data.data) {
-        setToken(data.data);
+        console.log(data)
+        setToken(true);
 
         navigate('/');
       }
@@ -62,6 +79,7 @@ export const Register = () => {
     formData.append('lastName', values.lastName);
     formData.append('phoneNumber', values.phoneNumber);
     formData.append('region', values.region);
+    formData.append('email', values.email);
     formData.append('passwordHash', values.passwordHash);
 
     mutate(formData);

@@ -1,36 +1,62 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useContext } from 'react';
+import { useMutation } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { API } from '../../API/api';
+import { RegisterContext } from '../../context/RegisterContext';
+import { UserContext } from '../../context/UserContext';
 
 export const Login = () => {
-  document.body.classList.remove("p-0")
+  document.body.classList.remove('p-0');
+  const { setUserData } = useContext(UserContext);
+  const { setToken } = useContext(RegisterContext);
+  const navigate = useNavigate();
+
   const initialValues = {
-    first_name: '',
-    last_name: '',
     email: '',
     password: '',
   };
 
   const validationSchema = Yup.object({
-    first_name: Yup.string()
-      .required('This input a required!')
-      .min(3, 'First name must have at least 3 elements!'),
-    last_name: Yup.string()
-      .required('This input a required!')
-      .min(3, 'First name must have at least 3 elements!'),
     email: Yup.string()
       .required('This input a required!')
       .email('Incorrect Email!'),
     password: Yup.string()
       .required('This input a required!')
-      .min(7, 'Password must consist of at least 7 elements!'),
+      .matches(
+        /[0-9]/,
+        'A number must be used even if there is one in the password!'
+      )
+      .matches(
+        /[a-z]/,
+        'Even if there is one in the password, a lowercase letter must be written!'
+      )
+      .matches(
+        /[A-Z]/,
+        'Even if there is one in the password, a uppercase letter must be written!'
+      )
+      .matches(
+        /(?=.*[@#$%^&+=])/,
+        'A symbol must be written even if there is one in the password!'
+      )
+      .min(8, 'Password must consist of at least 8 elements!'),
+  });
+
+  const { mutate } = useMutation('login-user', API.login, {
+    onSuccess: (data) => {
+      if (data.data) {
+        setToken(true);
+        setUserData(data.data);
+
+        navigate('/');
+      }
+    },
+    onError: (err) => console.log(err),
   });
 
   const onSubmit = (values) => {
-    const navigate = useNavigate()
-
-    navigate('/')
+    mutate(values);
   };
 
   return (
