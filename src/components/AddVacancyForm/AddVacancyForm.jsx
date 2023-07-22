@@ -29,12 +29,25 @@ export const AddVacancyForm = () => {
       console.log(data);
     },
     onError: (err) => {
-      console.log(err)
-    }
+      console.log(err);
+    },
   });
 
   const onSubmit = (val) => {
-    mutate(val);
+    const formData = new FormData();
+
+    formData.append('category', val.category);
+    formData.append('name', val.name);
+    formData.append('imagePath', fileUploadRef.current.files[0]);
+    formData.append('color', val.car_color);
+    formData.append('type', val.type);
+    formData.append('transmissionIsAutomatic', val.transmission);
+    formData.append('madeAt', val.made_at);
+    formData.append('price', val.price);
+    formData.append('description', val.description);
+    formData.append('probeg', val.probeg);
+
+    mutate(formData);
   };
 
   const validationSchema = Yup.object({
