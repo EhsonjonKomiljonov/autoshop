@@ -14,4 +14,5 @@ export const API = {
     ),
   getUser: () => axios.get(host + '/api/users'),
   addVacancy: (val) => axios.post(host + '/api/cars', val),
+  mainVacancys: () => axios.get(host + '/api/cars')
 };

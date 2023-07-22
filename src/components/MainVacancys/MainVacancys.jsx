@@ -1,32 +1,22 @@
 import React from 'react';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 import { API } from '../../API/api';
 import CarCard from '../CarCard/CarCard';
 import { Header } from '../Header/Header';
 import './MainVacancys.scss';
 
 const MainVacancys = () => {
-  const { mutate } = useMutation('signup-users', API.signUp, {
+  const [data, setData] = useState([]);
+  const { query } = useQuery('get-cars', API.mainVacancys, {
     onSuccess: (data) => {
       if (data.data) {
-        setToken(data.data);
-
-        navigate('/');
+        setData(data.data);
       }
     },
+    retry: 1,
     onError: (err) => console.log(err),
   });
-
-  const onSubmit = (values) => {
-    const formData = new FormData();
-
-    formData.append('firstName', values.firstName);
-    formData.append('lastName', values.lastName);
-    formData.append('phoneNumber', values.phoneNumber);
-    formData.append('region', values.region);
-    formData.append('passwordHash', values.passwordHash);
-
-    mutate(formData);
-  };
 
   return (
     <>
@@ -34,7 +24,9 @@ const MainVacancys = () => {
       <section className='main_vacancys'>
         <div className='container'>
           <div className='main_vacancys_inner'>
-            <CarCard />
+            {data.map((el) => {
+              return <CarCard obj={el} />;
+            })}
           </div>
         </div>
       </section>
