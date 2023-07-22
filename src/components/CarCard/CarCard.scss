@@ -1,4 +1,6 @@
 .car-card {
+  min-width: 500px;
+  width: 600px;
   background-color: #111;
   color: #fff;
   padding-right: 20px;
@@ -8,7 +10,6 @@
   display: flex;
   align-items: center;
   transition: background-color 0.3s, transform 0.3s;
-
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(17, 25, 40, 0.25);
@@ -22,8 +23,9 @@
   }
 
   img {
-    width: 150px;
+    width: 250px;
     height: 100%;
+    min-height: 335px;
     border-radius: 5px;
     margin-right: 20px;
     transition: opacity 0.3s;
@@ -31,6 +33,7 @@
   }
 
   .car-details {
+    padding: 20px 10px;
     h3 {
       font-size: 18px;
       margin-bottom: 10px;

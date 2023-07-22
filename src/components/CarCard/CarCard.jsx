@@ -12,8 +12,7 @@ const CarCard = ({ obj }) => {
     price,
     description,
     probeg,
-    manzil,
-    mileage,
+    manzil, 
   } = obj;
 
   return (
@@ -25,17 +24,16 @@ const CarCard = ({ obj }) => {
         />
         <div className='car-details'>
           <h3>
-            {`brand name`} {name}
+            {`Markasi`}: {name}
           </h3>
-          <p>Color: {color}</p>
-          <p>Type: {type}</p>
-          <p>Transmission: {transmissionIsAutomatic}</p>
-          <p>Production Date: {madeAt}</p>
-          <p>Price: ${price}</p>
-          <p>Mileage: {probeg}</p>
-          <p>Manzil:{manzil}</p>
-          <p>mileage:{mileage}</p>
-          <p>Description:{description}</p>
+          <p>rangi: {color}</p>
+          <p>tipi: {type}</p>
+          <p>uzatish qutisi: {transmissionIsAutomatic}</p>
+          <p>chiqarilgan sana: {madeAt}</p>
+          <p>narxi: ${price}</p>
+          <p>probeg: {probeg}</p>
+          <p>manzil:{manzil}</p>
+          <p>izoh:{description}</p>
         </div>
       </div>
     </div>
