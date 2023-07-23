@@ -17,7 +17,7 @@ const CarCard = ({ obj }) => {
 
   return (
     <div classNames='fade'>
-      <div className='car-card'>
+      <div className='car_card'>
         <img
           src={['http://localhost:5227/' + imagePath]}
           alt={`name`}

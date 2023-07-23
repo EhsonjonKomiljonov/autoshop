@@ -18,3 +18,29 @@
 body {
   height: 100%;
 }
+
+.sort_form {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #878787;
+    color: #fff;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  select {
+    background-color: #878787;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
