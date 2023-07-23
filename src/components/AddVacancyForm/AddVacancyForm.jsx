@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { API } from '../../API/api';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const AddVacancyForm = () => {
-  document.body.classList.remove('p-0'); 
+  document.body.classList.remove('p-0');
   const [fileName, setFileName] = useState('');
   const fileUploadRef = useRef();
   const navigate = useNavigate();
@@ -268,18 +268,6 @@ export const AddVacancyForm = () => {
           </Formik>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </section>
   );
 };

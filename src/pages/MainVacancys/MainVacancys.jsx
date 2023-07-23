@@ -9,6 +9,7 @@ import './MainVacancys.scss';
 const MainVacancys = () => {
   const [selectSort, setSelectSort] = useState([]);
   const [inputSort, setInputSort] = useState([]);
+  document.body.classList.remove("p-0")
 
   const onChangeSelect = async (evt) => {
     const data = await API.categorySelect(evt.target.value);

@@ -8,6 +8,8 @@ import { useContext } from 'react';
 import { RegisterContext } from './context/RegisterContext';
 import './assets/css/index.css';
 import MainVacancys from './pages/MainVacancys/MainVacancys';
+import { MyVacancys } from './pages/MyVacancys/MyVacancys';
+import { ToastContainer } from 'react-toastify';
 const queryClient = new QueryClient();
 
 function App() {
@@ -32,9 +34,22 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/vacancy" element={<AddVacancy />} />
+            <Route path="/my-vacancys" element={<MyVacancys />} />
             <Route path="/main-vacancys" element={<MainVacancys />} />
           </Routes>
         </main>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </QueryClientProvider>
     </>
   );

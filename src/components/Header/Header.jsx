@@ -67,6 +67,17 @@ export const Header = () => {
               </li>
               <li>
                 <NavLink
+                  to="/my-vacancys"
+                  className="text-white text-decoration-none fw-semibold"
+                  style={({ isActive }) =>
+                    isActive ? { borderBottom: '2px solid #ba1621' } : {}
+                  }
+                >
+                  VAKANSIYALARIM
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="/vacancy"
                   className="text-white text-decoration-none fw-semibold"
                   style={({ isActive }) =>
