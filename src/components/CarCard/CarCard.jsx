@@ -12,6 +12,7 @@ const CarCard = ({ obj }) => {
     price,
     description,
     probeg,
+    category,
     manzil, 
   } = obj;
 
@@ -24,8 +25,9 @@ const CarCard = ({ obj }) => {
         />
         <div className='car-details'>
           <h3>
-            {`Markasi`}: {name}
+            {`Nomi`}: {name}
           </h3>
+          <p>markasi: {category}</p>
           <p>rangi: {color}</p>
           <p>tipi: {type}</p>
           <p>uzatish qutisi: {transmissionIsAutomatic}</p>

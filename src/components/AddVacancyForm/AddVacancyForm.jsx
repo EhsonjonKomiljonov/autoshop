@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const AddVacancyForm = () => {
+  document.body.classList.remove('p-0'); 
   const [fileName, setFileName] = useState('');
   const fileUploadRef = useRef();
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export const AddVacancyForm = () => {
         toast.success('Vakansiya joylandi!');
 
         setTimeout(() => {
-          navigate('/');
+          navigate('/main-vacancys');
         }, 3000);
       }
     },

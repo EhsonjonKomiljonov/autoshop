@@ -8,10 +8,10 @@ import { RegisterContext } from '../../context/RegisterContext';
 import { UserContext } from '../../context/UserContext';
 
 export const Login = () => {
-  document.body.classList.remove('p-0');
   const { setUserData } = useContext(UserContext);
   const { setToken } = useContext(RegisterContext);
   const navigate = useNavigate();
+  document.body.classList.add('p-0');
 
   const initialValues = {
     email: '',
@@ -99,7 +99,7 @@ export const Login = () => {
             </Form>
           </Formik>
           <div className="links">
-            <Link to="/signup">Signup</Link>
+            <Link to="/signup">Sign In</Link>
           </div>
         </div>
       </div>

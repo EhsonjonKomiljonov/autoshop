@@ -25,11 +25,20 @@ body {
   justify-content: space-between;
 
   input {
-    padding: 10px;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px 20px;
     border-radius: 10px;
     background-color: #878787;
     color: #fff;
     border: none;
+
+    &::placeholder {
+      color: #fff;
+    }
+
     &:focus {
       outline: none;
     }
