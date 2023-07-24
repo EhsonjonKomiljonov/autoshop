@@ -12,7 +12,7 @@ export const API = {
           '%23'
         )}`
     ),
-  getUser: () => axios.get(host + '/api/users'),
+  getUser: () => axios.get(host + '/api/users/last-id'),
   addVacancy: (val) => axios.post(host + '/api/cars', val),
   getUserCars: (userId) => axios.get(host + `/api/users/${userId}/cars`),
   deleteVacancy: (id) => axios.delete(host + `/api/cars/${id}`),
