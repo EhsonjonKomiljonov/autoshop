@@ -17,7 +17,7 @@ export const Home = () => {
 
     if (isError) console.log(isError);
 
-    if (data) setUserData(data.data.at(-1));
+    if (data) setUserData(data.data);
   }
 
   return (

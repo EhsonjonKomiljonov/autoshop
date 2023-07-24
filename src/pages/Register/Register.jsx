@@ -63,7 +63,6 @@ export const Register = () => {
   const { mutate } = useMutation('signup-users', API.signUp, {
     onSuccess: (data) => {
       if (data.data) {
-        console.log(data)
         setToken(true);
 
         navigate('/');
